@@ -26,8 +26,11 @@
 
 namespace rawspeed {
 
-template <typename T, typename ActualAllocator = std::allocator<T>,
-          typename = std::enable_if_t<std::is_pod<T>::value>>
+template <typename T, typename ActualAllocator = std::allocator<T>
+#ifndef _WIN32
+          , typename = std::enable_if_t<std::is_pod<T>::value>
+#endif
+                  >
 class DefaultInitAllocatorAdaptor {
 public:
   using allocator_traits = std::allocator_traits<ActualAllocator>;
