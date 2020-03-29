@@ -185,13 +185,13 @@ if (WITH_ZLIB)
   if(ZLIB_FOUND)
     set(HAVE_ZLIB 1)
 
-    if(NOT TARGET ZLIB::ZLIB)
-      add_library(ZLIB::ZLIB INTERFACE IMPORTED)
-      set_property(TARGET ZLIB::ZLIB PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${ZLIB_INCLUDE_DIRS}")
-      set_property(TARGET ZLIB::ZLIB PROPERTY INTERFACE_LINK_LIBRARIES "${ZLIB_LIBRARIES}")
-    endif()
+#    if(NOT TARGET ZLIB::ZLIB)
+      add_library(zlib_library INTERFACE IMPORTED)
+      set_property(TARGET zlib_library PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${ZLIB_INCLUDE_DIRS}")
+      set_property(TARGET zlib_library PROPERTY INTERFACE_LINK_LIBRARIES "${ZLIB_LIBRARIES}")
+#    endif()
 
-    target_link_libraries(rawspeed PRIVATE ZLIB::ZLIB)
+    target_link_libraries(rawspeed PRIVATE zlib_library)
     set_package_properties(ZLIB PROPERTIES
                            TYPE RECOMMENDED
                            DESCRIPTION "software library used for data compression"
