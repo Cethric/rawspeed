@@ -71,7 +71,7 @@ PanasonicDecompressorV4::PanasonicDecompressorV4(const RawImage& img,
   // amount of bytes. But if it is not, then we need to round up to multiple of
   // BlockSize, because of splitting&rotation of each BlockSize's slice in half
   // at section_split_offset bytes.
-  const auto bufSize =
+  const uint64_t bufSize =
       section_split_offset == 0 ? bytesTotal : roundUp(bytesTotal, BlockSize);
 
   if (bufSize > std::numeric_limits<ByteStream::size_type>::max())
