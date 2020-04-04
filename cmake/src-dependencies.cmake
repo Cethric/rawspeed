@@ -142,13 +142,13 @@ if(WITH_JPEG)
     message(STATUS "Looking for JPEG - found")
     set(HAVE_JPEG 1)
 
-    if(NOT TARGET JPEG::JPEG)
-      add_library(JPEG::JPEG INTERFACE IMPORTED)
-      set_property(TARGET JPEG::JPEG PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${JPEG_INCLUDE_DIRS}")
-      set_property(TARGET JPEG::JPEG PROPERTY INTERFACE_LINK_LIBRARIES "${JPEG_LIBRARIES}")
-    endif()
+#    if(NOT TARGET JPEG::JPEG)
+      add_library(jpeg_library INTERFACE IMPORTED)
+      set_property(TARGET jpeg_library PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${JPEG_INCLUDE_DIRS}")
+      set_property(TARGET jpeg_library PROPERTY INTERFACE_LINK_LIBRARIES "${JPEG_LIBRARIES}")
+#    endif()
 
-    target_link_libraries(rawspeed PRIVATE JPEG::JPEG)
+    target_link_libraries(rawspeed PRIVATE jpeg_library)
     set_package_properties(JPEG PROPERTIES
                            TYPE RECOMMENDED
                            DESCRIPTION "free library for handling the JPEG image data format, implements a JPEG codec"
